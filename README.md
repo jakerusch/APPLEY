@@ -1,3 +1,3 @@
 # APPLEY
 
-![Screenshot](https://github.com/jakerusch/APPLEY/screenshot.png "Screenshot")
+![alt text](screenshot.png "watchface screenshot")
