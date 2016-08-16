@@ -12,8 +12,8 @@ var xhrRequest = function (url, type, callback) {
 
 function locationSuccess(pos) {
   // to fake current lat/lon for testing
-  pos.coords.latitude = '29.5411941';
-  pos.coords.longitude = '-98.5760687';
+  // pos.coords.latitude = '29.5411941';
+  // pos.coords.longitude = '-98.5760687';
 
   // Construct URLs
   var cityUrl = 'http://nominatim.openstreetmap.org/reverse?format=json&lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude;
