@@ -1,3 +1,3 @@
 # APPLEY
 
-!(screenshot.png "Screenshot")
+![Screenshot](https://github.com/jakerusch/APPLEY/screenshot.png "Screenshot")
