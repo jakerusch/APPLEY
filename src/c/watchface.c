@@ -1,7 +1,7 @@
 #include <pebble.h>
-#define KEY_CITY 0
-#define KEY_TEMP 1
-#define KEY_ICON 2
+#define KEY_CITY
+#define KEY_TEMP
+#define KEY_ICON
 
 static Window *s_main_window;
 static Layer *s_battery_icon_layer, *s_line_layer, *s_health_line_layer;
@@ -22,10 +22,10 @@ static void battery_update_proc(Layer *layer, GContext *ctx) {
   graphics_context_set_stroke_color(ctx, GColorWhite);
   
   // draw horizontal battery icon (dynamic)
-  graphics_draw_round_rect(ctx, GRect(128, 0, 14, 9), 1);
+  graphics_draw_round_rect(ctx, GRect(128, 1, 14, 9), 1);
   int batt = battery_percent/10;
-  graphics_fill_rect(ctx, GRect(130, 2, batt, 5), 1, GCornerNone);
-  graphics_fill_rect(ctx, GRect(142, 2, 1, 5), 0, GCornerNone); 
+  graphics_fill_rect(ctx, GRect(130, 3, batt, 5), 1, GCornerNone);
+  graphics_fill_rect(ctx, GRect(142, 3, 1, 5), 0, GCornerNone); 
   
   // set visibility of charging icon
   layer_set_hidden(bitmap_layer_get_layer(s_charging_bitmap_layer), !charging);  
@@ -62,7 +62,7 @@ static void main_window_load(Window *window) {
   
   // fonts
   s_clock_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_ULTRALIGHT_60));
-  s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_ULTRALIGHT_12));
+  s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_ULTRALIGHT_10));
   
   // clock layer, forces 12hr time (24 hr won't fit at 60 font)
   s_clock_layer = text_layer_create(GRect(0, 0, bounds.size.w, 70));
@@ -151,7 +151,7 @@ static void update_time() {
   
   // write the current hours into a buffer
   static char s_time_buffer[8];
-  strftime(s_time_buffer, sizeof(s_time_buffer), "%l:%M", tick_time);  
+  strftime(s_time_buffer, sizeof(s_time_buffer), "%l:%M", tick_time);
   
   // write date to buffer
   static char date_buffer[32];
@@ -253,7 +253,22 @@ static void load_icons(Window *window) {
 
 // unload main window
 static void main_window_unload(Window *window) {
+  layer_destroy(s_battery_icon_layer);
+  layer_destroy(s_line_layer);
+  layer_destroy(s_health_line_layer);
   text_layer_destroy(s_clock_layer);
+  text_layer_destroy(s_date_layer);
+  text_layer_destroy(s_temp_layer);
+  text_layer_destroy(s_health_layer);
+  text_layer_destroy(s_city_layer);
+  gbitmap_destroy(s_bluetooth_bitmap);
+  gbitmap_destroy(s_charging_bitmap);
+  gbitmap_destroy(s_weather_bitmap);
+  gbitmap_destroy(s_health_bitmap);
+  bitmap_layer_destroy(s_bluetooth_bitmap_layer);
+  bitmap_layer_destroy(s_charging_bitmap_layer);
+  bitmap_layer_destroy(s_weather_bitmap_layer);
+  bitmap_layer_destroy(s_health_bitmap_layer);
 }
 
 ///////////////////
@@ -265,9 +280,9 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   static char temp_buf[32];
 
   // Read tuples for data
-  Tuple *city_tuple = dict_find(iterator, KEY_CITY);
-  Tuple *temp_tuple = dict_find(iterator, KEY_TEMP);
-  Tuple *icon_tuple = dict_find(iterator, KEY_ICON);  
+  Tuple *city_tuple = dict_find(iterator, MESSAGE_KEY_KEY_CITY);
+  Tuple *temp_tuple = dict_find(iterator, MESSAGE_KEY_KEY_TEMP);
+  Tuple *icon_tuple = dict_find(iterator, MESSAGE_KEY_KEY_ICON);  
 
   // If all data is available, use it
   if(temp_tuple && icon_tuple && city_tuple) {

@@ -8,16 +8,23 @@
             "location",
             "health"
         ],
-        "displayName": "APPLEY",
+        "displayName": "Appley",
         "enableMultiJS": true,
-        "messageKeys": {
-            "KEY_CITY": 0,
-            "KEY_ICON": 2,
-            "KEY_TEMP": 1
-        },
+        "messageKeys": [
+            "KEY_CITY",
+            "KEY_TEMP",
+            "KEY_ICON"
+        ],
         "projectType": "native",
         "resources": {
             "media": [
+                {
+                    "file": "images/APPLEY.png",
+                    "menuIcon": true,
+                    "name": "APPLEY",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
                 {
                     "file": "images/CLEAR_SKY_DAY_WHITE_ICON.png",
                     "name": "CLEAR_SKY_DAY_WHITE_ICON",
@@ -98,11 +105,12 @@
                 },
                 {
                     "file": "fonts/ULTRALIGHT.ttf",
-                    "name": "ULTRALIGHT_12",
+                    "name": "ULTRALIGHT_10",
                     "targetPlatforms": null,
                     "type": "font"
                 },
                 {
+                    "characterRegex": "[0-9: ]",
                     "file": "fonts/ULTRALIGHT.ttf",
                     "name": "ULTRALIGHT_60",
                     "targetPlatforms": null,
@@ -112,11 +120,11 @@
         },
         "sdkVersion": "3",
         "targetPlatforms": [
-            "basalt"
+            "diorite"
         ],
         "uuid": "7ea4ee38-5b5b-4f04-888c-0b83d55ff90b",
         "watchapp": {
-            "watchface": false
+            "watchface": true
         }
     },
     "version": "1.0.0"
