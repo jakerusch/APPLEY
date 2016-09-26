@@ -105,7 +105,7 @@ static void main_window_load(Window *window) {
   layer_add_child(window_layer, s_line_layer);
   
   // create temperature text layer
-  s_temp_layer = text_layer_create(GRect(30, 104, 28, 16));
+  s_temp_layer = text_layer_create(GRect(30, 106, 28, 16));
   text_layer_set_background_color(s_temp_layer, GColorClear);
   text_layer_set_text_color(s_temp_layer, GColorWhite);
   text_layer_set_text_alignment(s_temp_layer, GTextAlignmentCenter);
@@ -113,7 +113,7 @@ static void main_window_load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(s_temp_layer));      
   
   // create city text layer
-  s_city_layer = text_layer_create(GRect(58, 104, 86, 16));
+  s_city_layer = text_layer_create(GRect(58, 106, 86, 16));
   text_layer_set_background_color(s_city_layer, GColorClear);
   text_layer_set_text_color(s_city_layer, GColorWhite);
   text_layer_set_text_alignment(s_city_layer, GTextAlignmentLeft);

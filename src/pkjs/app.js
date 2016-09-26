@@ -17,7 +17,7 @@ function locationSuccess(pos) {
 
   // Construct URLs
   var cityUrl = 'http://nominatim.openstreetmap.org/reverse?format=json&lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude;
-  var weatherUrl = 'https://api.forecast.io/forecast/' + myAPIKey + '/' + pos.coords.latitude + ',' + pos.coords.longitude;
+  var weatherUrl = 'https://api.darksky.net/forecast/' + myAPIKey + '/' + pos.coords.latitude + ',' + pos.coords.longitude;
   
   // get city
   xhrRequest(cityUrl, 'GET', 
